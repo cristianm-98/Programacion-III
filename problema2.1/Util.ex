@@ -3,4 +3,10 @@ defmodule Util do
     mensaje
     |>IO.puts()
   end
+
+  def ingresar(mensaje,:texto) do
+    mensaje
+    |>IO.gets()
+    |>String.trim()
+  end
 end
