@@ -1,6 +1,6 @@
 defmodule EntradaDatos do
 def main do
-  "Ingrese nombre del empleado:  "
+  "Ingrese nombre del empleado: "
   |>ingresar_texto()
   |>generar_mensaje()
   |>Util.mostrar_mensaje()
