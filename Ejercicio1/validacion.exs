@@ -11,7 +11,8 @@ defmodule Valicacion do
 
   "Ingrese los intentos"
   |>Util.ingresar(:entero)
-  
+
+  defp Validacion_credenciales(nombre,edad,)
 
   defp menor_edad(edad) do
     if(edad<18) do
