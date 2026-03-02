@@ -1,7 +1,7 @@
 defmodule ValidacionUsuario do
   def main do
     usuario = Util.ingresar("Ingrese el usuario: ", :texto)
-    validacion_usuario(usuario) |> mostrar_mensaje()
+    validacion_usuario(usuario) |> generar_mensaje()
   end
 
   def validacion_usuario(usuario) do
@@ -35,12 +35,12 @@ defmodule ValidacionUsuario do
     if errores == [], do: {:ok, "Usuario Valido"}, else: {:error, errores}
   end
 
-  def mostrar_mensaje({:ok, mensaje}) do
+  def generar_mensaje({:ok, mensaje}) do
     Util.mostrar_mensaje(mensaje)
   end
 
-  def mostrar_mensaje({:error, errores}) do
-    Util.mostrar_mensaje("Usuario Invalido: ")
+  def generar_mensaje({:error, errores}) do
+    Util.mostrar_mensaje("Usuario Invalido:")
     Enum.each(errores, fn error -> Util.mostrar_mensaje("- #{error}") end)
   end
 end
