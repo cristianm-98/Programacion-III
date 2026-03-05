@@ -32,7 +32,9 @@ defmodule ValidacionUsuario do
         do: errores ++ ["Debe contener al menos una letra"],
         else: errores
 
-    if errores == [], do: {:ok, "Usuario Valido"}, else: {:error, errores}
+    if errores == [],
+    do: {:ok, "Usuario Valido"},
+  else: {:error, errores}
   end
 
   def generar_mensaje({:ok, mensaje}) do
@@ -44,5 +46,4 @@ defmodule ValidacionUsuario do
     Enum.each(errores, fn error -> Util.mostrar_mensaje("- #{error}") end)
   end
 end
-
 ValidacionUsuario.main()

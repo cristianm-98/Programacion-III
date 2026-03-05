@@ -17,8 +17,8 @@ defmodule Parqueadero do
   def calcular_tarifa_base(hora) do
     cond do
       hora >= 1 and hora <= 2 -> 3000
-      hora >= 3 and hora <= 5 -> 3000 + (hora - 2) * 2500
-      hora >= 6 and hora <= 8 -> 3000 + 3 * 2500 + (hora - 5) * 2000
+      hora >= 3 and hora <= 5 -> 2500
+      hora >= 6 and hora <= 8 -> 2000
       hora > 8 -> 18000
     end
   end
