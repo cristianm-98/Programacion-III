@@ -5,6 +5,7 @@ defmodule ListaRecursividad do
   end
 
   def imprimir_lista([]) do
+    IO.puts("Termino")
   end
 
   def imprimir_lista([x|lista])  do
