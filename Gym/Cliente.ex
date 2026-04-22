@@ -45,4 +45,21 @@ defmodule Cliente do
               nueva_lista
         end
     end
+
+    def escribir_csv(clientes, nombre) do
+      clientes
+      |>generar_mensaje_clientes(&convertir_cliente_linea_csv/1)
+      |>(&("nombre, edad, altura\n"<>&1)).()
+      |>(&File.write(nombre,&1,[:append])).() #Agrega a la lista 
+    end
+
+    defp convertir_cliente_linea_csv(cliente) do
+      "#{cliente.nombre}, #{cliente.edad}, #{cliente.altura}"
+    end
+
+    def generar_mensaje_clientes(lista_clientes,parser) do
+      lista_clientes
+      |>Enum.map(parser)
+      |>Enum.join("\n")
+    end
 end
