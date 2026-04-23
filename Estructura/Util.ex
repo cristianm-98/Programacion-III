@@ -39,20 +39,22 @@ defmodule Util do
   end
 
   def ingresar(mensaje, :boolean) do
-    respuesta =
+  respuesta =
+    mensaje
+    |> ingresar(:texto)
+    |> String.downcase()
+    |> String.trim()
+
+  cond do
+    Enum.member?(["s", "si", "sí"], respuesta) -> true
+    Enum.member?(["n", "no"], respuesta)        -> false
+    true ->
+      "Error, ingrese S/Si/Sí o N/No \n"
+      |> mostrar_error()
       mensaje
-      |> ingresar(:texto)
-      |> String.upcase()
-    case respuesta do
-      "S" -> true
-      "N" -> false
-      _ ->
-        "Error, ingrese S o N \n"
-        |> mostrar_error()
-        mensaje
-        |> ingresar(:boolean)
-    end
+      |> ingresar(:boolean)
   end
+end
 
   def mostrar_error(mensaje) do
     IO.puts(:standard_error, IO.ANSI.red() <> mensaje <> IO.ANSI.reset())
