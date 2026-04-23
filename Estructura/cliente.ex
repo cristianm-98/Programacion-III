@@ -40,27 +40,19 @@ defmodule Cliente do
     end
   end
 
-  def generar_mensaje_clientes(lista_clientes, parser) do
-    lista_clientes
-    |>Enum.map(parser)
-    |>Enum.join("\n")
-  end
-
-  def escribir_csv(clientes, nombre) do
-    encabezado =
-      if File.exists?(nombre) do
-        ""
-      else
-        "nombre, edad, altura\n"
-      end
-    clientes
-    |> generar_mensaje_clientes(&convertir_cliente_linea_csv/1)
-    |> (&(encabezado <> &1 <> "\n")).()
-    |> (&File.write(nombre, &1, [:append])).()
-    clientes
-  end
-
-  defp convertir_cliente_linea_csv(cliente) do
+  def convertir_cliente_linea_csv(cliente) do
     "#{cliente.nombre}, #{cliente.edad}, #{cliente.altura}\n"
+  end
+
+  def convertir_cadena_cliente(cadena) do
+    [nombre, edad, altura] =
+      cadena
+      |> String.split(",")
+      |> Enum.map(&String.trim/1)
+
+      edad= edad |> String.to_integer()
+      altura = altura |> String.to_float()
+
+      Cliente.crear(nombre, edad, altura)
   end
 end
