@@ -2,6 +2,7 @@ defmodule Estructura do
   def main do
     "ingrese los datos del cliente: "
     |>Cliente.ingresar(:clientes)
+    |>Cliente.escribir_csv("clientes.csv")
     |>generar_mensaje_clientes()
     |>Util.mostrar_mensaje()
   end
